@@ -552,7 +552,7 @@ function sendOutAssignmentEmails(outMail, debug) {
       });
     }
     if (!debug) {
-      emailSent.push(["X"]);
+      emailSent.push(["x"]);
     } else { // no X if we're debugging
       emailSent.push([""]);
     }
