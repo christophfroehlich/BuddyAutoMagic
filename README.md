@@ -35,6 +35,8 @@ Soweit ich das bisher verstanden habe benötigt das System:
 - see MailText/readme.txt for Email-integration
 
 ## Installation
+Open up the spreadsheets containing your form responses and look at the url, it will be something like:    https://docs.google.com/spreadsheet/ccc?key=0ApBBsTPBxGcMdHBRbEg0cTdkczFjcWw4d0RxdW53clE&usp=drive_web#gid=6
+Extract the key (e.g. "0ApBBsTPBxGcMdHBRbEg0cTdkczFjcWw4d0RxdW53clE" in this case) and insert it in buddyAutoMagic.gs
 TODO:
 
 ##  Functional principle

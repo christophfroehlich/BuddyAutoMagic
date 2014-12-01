@@ -1,4 +1,4 @@
-// Buddy AutoMagic.gx
+// Buddy AutoMagic.gs
 // core functions
 
 
@@ -8,12 +8,6 @@ var ID = "0AqUCBEsJM7EFdGxlODVyQlZ0ZklNd3FScnA3WXRJaHc";
 var LOCAL_ID = "0AqUCBEsJM7EFdGQ4TGZ5VnFCcTBXNm43MzQ4TXo1cGc";
 // Internationals data
 var INTERNATIONAL_ID = "0AqUCBEsJM7EFdGVxMzlrTHp4X3NXUi1ORDJCd3haUlE";
-
-// Open up the spreadsheets containing your form responses and look at the url,
-// it will be something like:
-//    https://docs.google.com/spreadsheet/ccc?key=0ApBBsTPBxGcMdHBRbEg0cTdkczFjcWw4d0RxdW53clE&usp=drive_web#gid=6
-// Extract the key (e.g. "0ApBBsTPBxGcMdHBRbEg0cTdkczFjcWw4d0RxdW53clE" in this case) and
-// insert it here below. In the future this should become configurable through the spreadsheet
 
 // TODO: Make generic
 function getActiveSpreadsheet() {

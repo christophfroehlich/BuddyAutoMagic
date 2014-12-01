@@ -6,7 +6,7 @@
 // the keys are the header values and the values are the cell values
 // play around with this function to see what how it works
 function getSheetResponsesByName(sheetName, addVar, msg) {
-  
+
   addVar = (typeof addVar == "undefined") ? true : addVar;
   // TODO: Using the cache might be fun, but it's generating some random bugs
   //  var cache = CacheService.getPublicCache(),
@@ -15,17 +15,17 @@ function getSheetResponsesByName(sheetName, addVar, msg) {
   //    request = request + "-" + msg;
   //  }
   //  Logger.log(request);
-  //  
+  //
   //  var cached = cache.get(request);
   //  if (cached != null) {
   //    return JSON.parse(cached);
   //  }
-  
+
   var addVar = (typeof addVar !== 'undefined') ? addVar : true,
       ss = getActiveSpreadsheet(),
       sheet = ss.getSheetByName(sheetName),
       responses = getResponses(sheet);
-  
+
 //  cache.put(request, JSON.stringify(responses), 20);
   if (!addVar) {
     return responses;
@@ -40,7 +40,7 @@ function getResponses(sheet) {
   return objects;
 };
 
-// get size of object. 
+// get size of object.
 // Example:
 //   {key1: val1, key2: val2}.size() => 2
 Object.size = function(obj) {
@@ -51,13 +51,13 @@ Object.size = function(obj) {
   return size;
 };
 
-// Extracts keys from object. 
+// Extracts keys from object.
 // Example:
 //   getKeys({key1: val1, key2: val2}) => ["key1", "key2"]
 function getKeys(obj)
 {
   var keys = [];
-  
+
   for(var key in obj)
   {
     if(obj.hasOwnProperty(key))
@@ -65,14 +65,14 @@ function getKeys(obj)
       keys.push(key);
     }
   }
-  
+
   return keys;
 }
 
 // returns a list of unique elements in array a
-// Example: 
+// Example:
 //   [1,1,2,2,3,3,4].filter(uniq) => [1,2,3,4]
-function uniq(value, index, self) { 
+function uniq(value, index, self) {
   return self.indexOf(value) === index;
 }
 
@@ -97,7 +97,7 @@ function addVariables(responses) {
         o[key] = r[key]; // original question
         //        if (key == "Exchange id") {
         //        }
-          
+
         // TODO: necessary? We can probably implement this in a better way
         rev[r[key]] = key;
       } else { // List question, such as interests
@@ -120,15 +120,15 @@ function addVariables(responses) {
 
 // esnreykjavik's oAuth 2.0 Bitly access token. Please use your own
 // if you think you'll be generating a lot of short urls!
-function bitlyToken() { 
+function bitlyToken() {
   return "b43c97922ec89536110ec0f01e034c2f141ac486";
 }
 
 // How many more emails can I send through MailApp? Current max is 500/day
 function dailyQuotaLeft() {
-//  Logger.log("Remaining daily quota: " + MailApp.getRemainingDailyQuota()); 
-  Browser.msgBox("dailyQuotaLeft", 
-                 Session.getActiveUser().getEmail() + " has " + MailApp.getRemainingDailyQuota() + " recipients left today (max. 100 within 24h)!", 
+//  Logger.log("Remaining daily quota: " + MailApp.getRemainingDailyQuota());
+  Browser.msgBox("dailyQuotaLeft",
+                 Session.getActiveUser().getEmail() + " has " + MailApp.getRemainingDailyQuota() + " recipients left today (max. 100 within 24h)!",
     Browser.Buttons.OK)
 }
 
@@ -151,7 +151,7 @@ function logAffinities(As, Bs, affinities, spreadsheet) {
   var ss = spreadsheet || getActiveSpreadsheet();
   var as = ss.getSheetByName(affinityName); // affinity sheet (as)
   as.clear();
-  var sheet = []; 
+  var sheet = [];
   var headRow = ["", ""];  // A1-B2 are empty
   var row = ["", ""];
   for (var i = 0; i < affinities[0].length; i++) {
@@ -160,7 +160,7 @@ function logAffinities(As, Bs, affinities, spreadsheet) {
   }
   sheet.push(headRow);
   sheet.push(row);
-  for (var i = 0; i < affinities.length; i++) { // for 
+  for (var i = 0; i < affinities.length; i++) { // for
     row = [i, As[i].firstName].concat(affinities[i]);
     sheet.push(row);
   }
@@ -209,7 +209,7 @@ function colorBadCases() {
   //  getActiveSpreadsheet().getSheetByName("Assignments").getRange(2, 3, range.length, range[0].length).setValues(range);
 }
 
-// Update buddy assignment counts, how many exchange buddies each local buddy has received 
+// Update buddy assignment counts, how many exchange buddies each local buddy has received
 function getAssignmentCounts() {
   var assignments = getSheetResponsesByName("Assignments", false, "Counts");
   var internationals = getSheetResponsesByName("Internationals", true, "Counts");
@@ -231,17 +231,17 @@ function getAssignmentCounts() {
     exchangeAssignments[a.exchangeId]++;
   }
   //  for (var i = 0; i < exchangeAssignments.length; i++) {
-  //    Logger.log(i + ": " + exchangeAssignments[i]); 
-  //    Logger.log(i + ": " + localAssignments[i]); 
+  //    Logger.log(i + ": " + exchangeAssignments[i]);
+  //    Logger.log(i + ": " + localAssignments[i]);
   //  }
-  return {locals: localAssignments, localCapacity: localCapacity, internationals: exchangeAssignments}; 
+  return {locals: localAssignments, localCapacity: localCapacity, internationals: exchangeAssignments};
 }
 
 // Return all colums to original color
 function copyHeaderBackground(sheetName) {
   var ss = getActiveSpreadsheet().getSheetByName(sheetName);
   var header = ss.getRange(1,1,1,ss.getLastColumn());
-  var bg = header.getBackgrounds(); // copyFormatToRange(ss, 1, ss.getLastColumn(), 1, ss.getLastRow()); // 
+  var bg = header.getBackgrounds(); // copyFormatToRange(ss, 1, ss.getLastColumn(), 1, ss.getLastRow()); //
   for (var i = 1; i < ss.getLastRow(); i++) {
     bg.push(bg[0].slice(0)); // copy color
   }
@@ -267,7 +267,7 @@ function replaceBuddyFamilyString(body, familyName, intro, locals, international
         if (a.localId == l.id) { // if same local buddy
           var e = internationals[a.exchangeId]; // matched exchange buddy
           //          Logger.log(e);
-          s += "<blockquote>" + 
+          s += "<blockquote>" +
             l.firstName + " " + l.lastName + " (" + l.whereDoYouComeFrom + ") + " +  // local
               e.firstName + " " + e.lastName + " (" + e.whichIsTheCountryOfYourHomeUniversity + ")" + // exchange student
                 "</blockquote>";
@@ -276,7 +276,7 @@ function replaceBuddyFamilyString(body, familyName, intro, locals, international
     }
     s += "</div></div>";
     //    Logger.log("\n" + s);
-    
+
     return body.replace("BUDDYFAMILY", "<div>" + s + "</div>");;
   }
   return body.replace("BUDDYFAMILY", "")
@@ -300,7 +300,7 @@ function correctFacebookLink(facebook, name){
     Logger.log("Invalid facebooklink=(" + original + ")");
     return; // invalid url
   }
-  
+
   var link = "http://www.facebook.com/" + tail;
   Logger.log("Successfully changed: " + original + " to: " + link);
   return link;
@@ -325,10 +325,10 @@ function logEmail(message) {
 function logMsg(logSheet, emailAddr, subject, body) {
   var dataRow = [new Date().toTimeString(), emailAddr, subject, body];
   logSheet.appendRow(dataRow);
-  Logger.log("Success, email logged!" + 
+  Logger.log("Success, email logged!" +
              "\nTimestamp: " + dataRow[0] +
              "\nEmail: " + emailAddr +
-             "\nSubject: " + subject + 
+             "\nSubject: " + subject +
              "\nBody: " + body);
 }
 
@@ -358,9 +358,9 @@ function profile(k, As, Bs) {
   //  Logger.log(ir.length + "  " + lr.length);
   //  Logger.log(range);
   var affinities = calcAffinities(As, Bs, k);
-  var flow = maxCostBipartiteMatching(affinities);  
+  var flow = maxCostBipartiteMatching(affinities);
   var aft = new Date().getSeconds();
-  
+
   //  Logger.log("k=%s After diff=%s", k, aft - bef);
 }
 
@@ -379,11 +379,11 @@ function getObject(ids, o) {
   return O;
 }
 
-/* 
+/*
  * Borrowed from http://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
- * 
- * finds the intersection of 
- * two arrays in a simple fashion.  
+ *
+ * finds the intersection of
+ * two arrays in a simple fashion.
  *
  * PARAMS
  *  a - first array, must already be sorted
@@ -391,7 +391,7 @@ function getObject(ids, o) {
  *
  * NOTES
  *
- *  Should have O(n) operations, where n is 
+ *  Should have O(n) operations, where n is
  *    n = MIN(a.length(), b.length())
  */
 function intersect(a, b)
@@ -414,7 +414,7 @@ function intersect(a, b)
   return result;
 }
 
-// TODO: remove slice(20) if method is 
+// TODO: remove slice(20) if method is
 //       used elsewhere than in interest.repr
 function intersectObjectsOnValue(value, A, B) {
   var intersection = [];
@@ -428,7 +428,7 @@ function intersectObjectsOnValue(value, A, B) {
   return intersection;
 }
 
-// TODO: remove slice(20) if method is 
+// TODO: remove slice(20) if method is
 //       used elsewhere than in interest.repr
 function unionObjectsOnValue(value, A, B) {
   var intersection = [];
@@ -466,12 +466,12 @@ function getColors() {
 
 /*
  * Borrowed from http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color
- * If you pass in 100 for percent it will make your color pure white. 
- * If you pass in 0 for percent, nothing will happen. If you pass in 
+ * If you pass in 100 for percent it will make your color pure white.
+ * If you pass in 0 for percent, nothing will happen. If you pass in
  * 1 for percent it will add 3 shades to all colors (2.55 shades per 1%,
- * rounded). So your really passing in a percentage of white (or black, use negative). 
+ * rounded). So your really passing in a percentage of white (or black, use negative).
  */
-function shadeColor(color, percent) {   
+function shadeColor(color, percent) {
     var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, G = (num >> 8 & 0x00FF) + amt, B = (num & 0x0000FF) + amt;
     return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
 }
@@ -483,7 +483,7 @@ function getGmailDraftBySubject(subject) {
   var drafts = GmailApp.getDraftMessages(); // TODO: cache
   for (var i = 0; i < drafts.length; i++) {
     var m = drafts[i];
-    //    Logger.log("Subject: %s\nBody: %s", m.getSubject(), m.getBody()); 
+    //    Logger.log("Subject: %s\nBody: %s", m.getSubject(), m.getBody());
     if (m.getSubject() == subject) {
       return { subject: m.getSubject(), htmlBody: m.getBody() };
     }
