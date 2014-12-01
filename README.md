@@ -6,8 +6,19 @@ Say we want to pair up two groups of people, international students and the loca
 
 ==============
 
-## License
-This is free software, free as in freedom. Feel free to edit it, reuse, redistribute in any way you want. I ask you however to please contribute back to the project if you find it useful.
+## Copyright
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 ## Thanks to
 Author: **Ólafur Páll Geirsson**
@@ -30,7 +41,6 @@ TODO:
 We set up a complete [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph) with local students on one side and the international students on the other.
 We assign the affinity scores as costs to the edges. Our goal:
 >   find a perfect matching that maximizes total affinity scores
-Matching wird anhand von einem Affinitätswert gemacht wo Leute mit vielen Ähnlichkeiten in eine Gruppe gegeben werden. Dabei hat jeder Buddy mit jedem Incoming ein eigenes Affinity Rating.
 
 ## Logger
 TODO: how does it work?
