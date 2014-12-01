@@ -1,7 +1,9 @@
-// Buddy AutoMagic.gs
+// ##########################
+// ## Buddy AutoMagic.gs ####
 // core functions
+// ##########################
 
-
+// ## Settings ##
 // Your working spreadsheet
 var ID = "0AqUCBEsJM7EFdGxlODVyQlZ0ZklNd3FScnA3WXRJaHc";
 // Locals data
@@ -9,6 +11,7 @@ var LOCAL_ID = "0AqUCBEsJM7EFdGQ4TGZ5VnFCcTBXNm43MzQ4TXo1cGc";
 // Internationals data
 var INTERNATIONAL_ID = "0AqUCBEsJM7EFdGVxMzlrTHp4X3NXUi1ORDJCd3haUlE";
 
+// ## CODE ##
 // TODO: Make generic
 function getActiveSpreadsheet() {
   Logger.log("Opening sheet id=%s", ID);

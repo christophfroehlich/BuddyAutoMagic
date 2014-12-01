@@ -32,7 +32,7 @@ Thanks:
 Soweit ich das bisher verstanden habe benötigt das System:
 - Zwei Formulare mit dazugehörigen Tabellen in die die Daten eingetragen werden.
 - Das "große" Spreadsheet mit dem Programmcode von Ólafur das die Berechnungen vornimmt und Einstellungen erlaubt.
-- see MailText/readme.txt for Email-integration
+- see [MailText/how2SetupMailText.md](MailText/readme.md) for Email-integration
 
 ## Installation
 Open up the spreadsheets containing your form responses and look at the url, it will be something like:    https://docs.google.com/spreadsheet/ccc?key=0ApBBsTPBxGcMdHBRbEg0cTdkczFjcWw4d0RxdW53clE&usp=drive_web#gid=6
