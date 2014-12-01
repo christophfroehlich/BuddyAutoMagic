@@ -1,46 +1,6 @@
-// An attempt to make the Buddy/Mentoring/Tutor program 
-// slightly more innovative
+// Buddy AutoMagic.gx
+// core functions
 
-// INTRODUCTION
-// Say we want to pair up two groups of people, international students and the
-// local students, with respect to language skills, study level, interests and
-// etc.  We set up an "affinity" score to estimate the affinity of a given
-// pair, a high score indicates that the two persons will like each other.
-
-// SET UP
-// We set up a complete bipartite graph (https://en.wikipedia.org/wiki/Bipartite_graph)
-// with local students on one side and the international students on the other.
-// We assign the affinity scores as costs to the edges. Our goal:
-// >   find a perfect matching that maximizes total affinity scores
-
-// WARNING
-// The following code does not necessarily follow best coding practices. It was
-// written to test if pairing students this way could actually work out.
-// A proper refactoring is definitely in order but will probably have to wait
-// until next Christmas 2013.
-
-// Author: Ólafur Páll Geirsson (olafurpg@gmail.com)
-// Thanks: Pétur Einarsson for constant feedback
-//         Bjarki Ágúst Guðmundsson for network flow implementation,
-//         Trausti Sæmundsson for facebook replace regex
-//         Your name here? Try it out for your buddy/mentor program :)
-
-
-// This is free software, free as in freedom. Feel free to edit it, reuse,
-// redistribute in any way you want. I ask you however to please contribute back
-// to the project if you find it useful.
-
-//////////////////////////////
-//    ESN Buddies
-//////////////////////////////
-// TODO: TypeError: Cannot read property "htmlBody" from undefined.s
-// TODO: exctract response sheet ids from spreadsheet
-// TODO: locals and internationals must NOT be empty before "Copy responses"
-// TODO: refactor fill out assignments, getQuestionKeys is not defined
-// TODO: Convert appendix to question
-// TODO: Possible recruits
-// TODO: Pairing stats
-// TODO: Clear non email sent or force match
 
 // Your working spreadsheet
 var ID = "0AqUCBEsJM7EFdGxlODVyQlZ0ZklNd3FScnA3WXRJaHc";
