@@ -1,5 +1,5 @@
 ///////////////
-// Google Code 
+// Google Code
 ///////////////
 
 // Replaces markers in a template string with values define in a JavaScript data object.
@@ -13,7 +13,7 @@ function fillInTemplateFromObject(template, data) {
   var email = template;
   // Search for all the variables to be replaced, for instance ${"Column name"}
   var templateVars = template.match(/\$\{\"[^\"]+\"\}/g);
-  
+
   // Replace variables from the template with the actual values from the data object.
   // If no value is available, replace with the empty string.
   for (var i = 0; i < templateVars.length; ++i) {
@@ -21,7 +21,7 @@ function fillInTemplateFromObject(template, data) {
     var variableData = data[normalizeHeader(templateVars[i])];
     email = email.replace(templateVars[i], variableData || "");
   }
-  
+
   return email;
 }
 

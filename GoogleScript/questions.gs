@@ -40,9 +40,9 @@ function affinity(A, B, questions, qi) {
 //      var result = importance*affinityQuestion;
 //    }
     var result = Math.round(question.importance(qi) * question.question(A, B, qi));
-    if (result === undefined || isNaN(result)) { 
+    if (result === undefined || isNaN(result)) {
       Logger.log("Invalid question: " + question.name);
-      continue; 
+      continue;
     }
 //    Logger.log("%s: %s", question.name, result);
     affinity += result;
@@ -60,7 +60,7 @@ function affinity(A, B, questions, qi) {
 
 // Question members
 // `name`: Name of question
-// `importance`: Returns affinity 
+// `importance`: Returns affinity
 // `question`: Calculates score for
 //  given local/international pair
 //    Arguments
@@ -77,7 +77,7 @@ function genderQuestion() {
     question: function (A, B) {
       if (!noPref(A.genderPref) && A.genderPref != B.gender) {
         return -1;
-      } else {        
+      } else {
         return (A.genderPref == B.gender) ? 1 : 0;
       }
     },
@@ -109,7 +109,7 @@ function ageQuestion() {
     question: function (A, B) {
       var maxDiff = 5,
           maxSquared = maxDiff * maxDiff;
-      
+
       return (maxSquared - Math.pow(Math.min(Math.abs(A.age - B.age), maxDiff), 2)) / maxSquared;
     },
     isBad: function (A, B) {
@@ -118,7 +118,7 @@ function ageQuestion() {
     repr: {
       header: [
         "Age difference",
-        "Local Age",
+        "Local Age",
         "Exchange Age"
       ],
       data: function(A, B) {
@@ -137,7 +137,7 @@ function countryPreferenceQuestion() {
   return {
     name: "Country pref",
     // we might want to reconsider the question framework here
-    // it might be easier to simply skip the importance member, 
+    // it might be easier to simply skip the importance member,
     // or make it optional
     importance: function (qi) {
       // All preferences are the same
@@ -164,7 +164,7 @@ function countryPreferenceQuestion() {
         "Exchange Nationality",
         "Pref 1",
         "Pref 2",
-        "Pref 3",        
+        "Pref 3",
       ],
         data: function(A, B) {
         return [
@@ -191,7 +191,7 @@ function studyLevelQuestion() {
     repr: {
       header: [
         "Local level",
-        "Exchange level"    
+        "Exchange level"
       ],
       data: function(A, B) {
         return [
@@ -216,7 +216,7 @@ function facultyQuestion() {
     repr: {
       header: [
         "Local faculty",
-        "Exchange faculty"    
+        "Exchange faculty"
       ],
       data: function(A, B) {
         return [
@@ -248,7 +248,7 @@ function languageQuestion() {
     // Todo: doesn't work!!!
     if (A && B) {
       var inCommon = intersect(
-        A.languages.split(", "), 
+        A.languages.split(", "),
         B.languages.split(", ")
       );
       if (inCommon.length != 0) {
@@ -500,7 +500,7 @@ function gotPreferredCountry(A, B) {
   //  Logger.log(A[q.pref1] + "  " + A[q.pref2] + " " + A[q.pref3] + " + " + country);
   if (noPref(A.pref1) || A.pref1 == country) return true;
   if (noPref(A.pref2) || A.pref2 == country) return true;
-  if (A.pref3 == country) return true; 
+  if (A.pref3 == country) return true;
   // if you preferred two or three countries but got none
   return false;
 }
@@ -547,7 +547,7 @@ function studyLevel(A, B) {
   var Alevel = getStudyLevel(A);
   var Blevel = getStudyLevel(B);
   if (A && B) { // If both buddies answered questions
-    return 2 - Math.abs(Alevel - Blevel); 
+    return 2 - Math.abs(Alevel - Blevel);
   } else {
     return 0; // Either A or B did not answer question
   }
@@ -566,7 +566,7 @@ function studyTest() {
 
 function getLangs(A) {
   if (!A) {
-    return "None"; 
+    return "None";
   }
   var langs = A.split(",");
   //  langs.map(String.prototype.trim); // Clear leading and trailing whitespace
@@ -579,14 +579,14 @@ function getLangs(A) {
 function language(A, B) {
   var aLangs = getLangs(A);
   var bLangs = getLangs(B);
-  
+
   if (!aLangs || !bLangs) { // either A or B did not answer question
-    return 0; 
+    return 0;
   }
   //  Logger.log(aLangs);
   //  Logger.log(bLangs);
   var score = 0; // 1 point for ever same language spoken
-  
+
   //  Iterate through all pairs of langages
   for (var i = 0; i < aLangs.length; i++) {
     if (bLangs.indexOf(aLangs[i]) !== -1) { // both speak same language
@@ -607,7 +607,7 @@ function interestRate2(A) {
     case "Not important": // we dismiss this interest
     default:
       return;
-  }  
+  }
 }
 
 function interest2(A, B) {
@@ -617,7 +617,7 @@ function interest2(A, B) {
   if (!aRate || !bRate) {
     return 0;
   } else {
-    return Math.pow(aRate + bRate - 1, 2); 
+    return Math.pow(aRate + bRate - 1, 2);
   }
 }
 
@@ -643,7 +643,7 @@ function interestRate(A) {
       return 4;
     default:
       return;
-  }  
+  }
 }
 
 // Deprecated, see @interest2
